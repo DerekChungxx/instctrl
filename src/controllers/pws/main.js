@@ -1,8 +1,15 @@
 import serialDevSearch from '../../dev/serialDev';
 
 function pwsSearchDev(req, res) {
-  serialDevSearch();
-  res.send(' Search Dev OK');
+  // serialDevSearch();
+  const promise = new Promise(serialDevSearch);
+
+  promise.then((v) => {
+    console.log(v);
+    res.send(v);
+    // res.send(' Search Dev OK!!!');
+  });
+  // res.send(' Search Dev OK');
 }
 function GetOutputConfig(req, res) {
   res.send(` GetOutputConfig, dev id = ${req.params.dev_id}, config id = ${req.params.conf_id}`);
